@@ -4,3 +4,6 @@
 /outputs
 *.key
 /jogging*
+/pose*
+*.mp3
+*.mp4

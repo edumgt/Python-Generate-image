@@ -19,7 +19,9 @@ fps = 30
 target_fps = 60
 width, height = 512, 768
 guidance_scale = 7.5
-strength = 0.75
+strength = 0.35
+generator = torch.Generator("cuda").manual_seed(12345)
+
 mp3_file = "background.mp3"
 
 # 파일명 정의
@@ -29,7 +31,8 @@ final_video = "jogging_with_audio.mp4"
 
 # === 모델 로드 ===
 pipe = StableDiffusionImg2ImgPipeline.from_pretrained(
-    "runwayml/stable-diffusion-v1-5",
+    # "runwayml/stable-diffusion-v1-5",
+    "Lykon/dreamshaper-8",
     torch_dtype=torch.float16
 ).to("cuda")
 pipe.enable_attention_slicing()
@@ -44,7 +47,8 @@ for i in range(num_frames):
         prompt=prompt,
         image=prev_image,
         strength=strength,
-        guidance_scale=guidance_scale
+        guidance_scale=guidance_scale,
+        generator = generator
     ).images[0]
     image.save(f"{output_dir}/frame_{i:03}.png")
     print(f"✅ frame_{i:03}.png 생성 완료")
