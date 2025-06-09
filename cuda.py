@@ -9,15 +9,15 @@ import numpy as np
 prompt = "Just two orange, cinematic lighting"
 output_dir = "frames_connected"
 os.makedirs(output_dir, exist_ok=True)
-num_frames = 30
+num_frames = 48
 width, height = 512, 768
 strength_decay = 0.98  # 점진적 변화 비율
 
 # === 모델 로드 ===
 pipe = StableDiffusionImg2ImgPipeline.from_pretrained(
     "runwayml/stable-diffusion-v1-5",
-    torch_dtype=torch.float32
-).to("cpu")
+    torch_dtype=torch.float16
+).to("cuda")
 
 # === 1. 첫 이미지 생성 (기준 프레임)
 image = pipe(prompt=prompt, strength=1.0, guidance_scale=7.5,
