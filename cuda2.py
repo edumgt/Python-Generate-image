@@ -4,75 +4,69 @@ import os
 import cv2
 from PIL import Image
 import subprocess
+import time
 
 # === 설정 ===
-prompt_start = "a girl in natural lighting"
-prompt_end = "a girl in futuristic sci-fi armor, neon lights"
-output_dir = "frames_connected"
+prompt = (
+    "a young woman wearing shorts and a light jogging outfit, jogging by the riverside "
+    "at 5am, soft dawn lighting, peaceful atmosphere, motion blur, dynamic pose"
+)
+output_dir = "jogging_frames"
 os.makedirs(output_dir, exist_ok=True)
 
-num_frames = 120              # 원래 방향 프레임 수
+num_frames = 150   # 5초 × 30fps
 fps = 30
 width, height = 512, 768
 guidance_scale = 7.5
-strength_decay = 0.995
-min_strength = 0.3
-mp3_file = "background.mp3"
-final_video = "output_connected_with_audio.mp4"
+strength = 0.75  # 이미지 왜곡도 (조절 가능)
+mp3_file = "background.mp3"  # 선택: 배경음악
+temp_video = "temp_no_audio.mp4"
+final_video = "jogging_with_audio.mp4"
 
 # === 모델 로드 ===
 pipe = StableDiffusionImg2ImgPipeline.from_pretrained(
-    "Lykon/dreamshaper-8",
-    torch_dtype=torch.float16
+    "Lykon/dreamshaper-8", torch_dtype=torch.float16
 ).to("cuda")
+pipe.enable_attention_slicing()
 
-# === 첫 프레임 생성 ===
-image = pipe(prompt=prompt_start, image=Image.new("RGB", (width, height), "white"),
-             strength=1.0, guidance_scale=guidance_scale).images[0]
-image.save(f"{output_dir}/frame_000.png")
+# === 첫 이미지용 흰 배경
+init_image = Image.new("RGB", (width, height), "white")
 
 # === 프레임 생성 ===
-for i in range(1, num_frames):
-    # 프롬프트 점진적 전환
-    ratio = i / (num_frames - 1)
-    prompt = f"{prompt_start} AND ({prompt_end})^{ratio:.2f}"
-    
-    strength = max(min_strength, strength_decay ** i)
-    image = pipe(prompt=prompt, image=image, strength=strength, guidance_scale=guidance_scale).images[0]
+print(f"🚀 {num_frames}프레임 생성 시작...")
+start_time = time.time()
+for i in range(num_frames):
+    image = pipe(prompt=prompt, image=init_image,
+                 strength=strength, guidance_scale=guidance_scale).images[0]
     image.save(f"{output_dir}/frame_{i:03}.png")
-    print(f"🖼️ frame_{i:03}.png saved (strength={strength:.4f}, ratio={ratio:.2f})")
+    print(f"✅ frame_{i:03}.png 생성 완료")
+print(f"🖼️ 전체 프레임 생성 완료! ⏱️ {time.time() - start_time:.2f}초")
 
-# === 🔁 프레임 루프 (정방향 + 역방향)
+# === 영상 생성 (OpenCV)
 frame_files = sorted([f for f in os.listdir(output_dir) if f.endswith(".png")])
-reverse_files = frame_files[-2:0:-1]  # 첫 프레임 중복 제외
-all_files = frame_files + reverse_files
-
-# === OpenCV로 영상 생성
-sample_frame = cv2.imread(os.path.join(output_dir, all_files[0]))
+sample_frame = cv2.imread(os.path.join(output_dir, frame_files[0]))
 height, width, _ = sample_frame.shape
-temp_video = "temp_no_audio.mp4"
-
 out = cv2.VideoWriter(temp_video, cv2.VideoWriter_fourcc(*'mp4v'), fps, (width, height))
-for file in all_files:
-    frame = cv2.imread(os.path.join(output_dir, file))
-    out.write(frame)
+
+for f in frame_files:
+    path = os.path.join(output_dir, f)
+    img = cv2.imread(path)
+    out.write(img)
 out.release()
+print(f"🎬 영상 생성 완료: {temp_video}")
 
-print(f"🎬 mp4 생성 완료: {temp_video}")
-
-# === 🎵 MP3 병합 (ffmpeg 필요)
+# === 배경 음악 병합
 if os.path.exists(mp3_file):
+    print("🎵 오디오 병합 중...")
     cmd = [
-        "ffmpeg",
-        "-y",
+        "ffmpeg", "-y",
         "-i", temp_video,
         "-i", mp3_file,
-        "-c:v", "copy",
-        "-c:a", "aac",
-        "-shortest",
-        final_video
+        "-c:v", "libx264", "-crf", "18", "-preset", "slow",
+        "-c:a", "aac", "-b:a", "192k",
+        "-shortest", final_video
     ]
     subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    print(f"✅ 최종 영상 생성 완료: {final_video}")
+    print(f"✅ 최종 영상 완료: {final_video}")
 else:
-    print("⚠️ 배경 음악 파일이 없습니다. 오디오 없이 저장됨.")
+    print("⚠️ MP3 없음. 오디오 없이 저장됨.")
