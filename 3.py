@@ -3,12 +3,12 @@ from diffusers import StableDiffusionPipeline
 import os
 
 # ✅ Hugging Face 토큰이 필요 없는 공개 모델 사용 (runwayml)
-model_id = "runwayml/stable-diffusion-v1-5"
+model_id = "Lykon/dreamshaper-8",
 
 pipe = StableDiffusionPipeline.from_pretrained(
     model_id,
-    torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32
-).to("cuda" if torch.cuda.is_available() else "cpu")
+    torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float16
+).to("cuda")
 
 # ✅ 새로운 챔피언들
 champions = {
