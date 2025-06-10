@@ -7,8 +7,8 @@ from PIL import Image
 # 모델 로드 (CPU 전용)
 pipe = StableDiffusionPipeline.from_pretrained(
     "runwayml/stable-diffusion-v1-5",
-    torch_dtype=torch.float32
-).to("cpu")
+    torch_dtype=torch.float16
+).to("cuda")
 
 # 폴더 준비
 output_dir = "frames"
