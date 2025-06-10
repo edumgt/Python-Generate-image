@@ -15,9 +15,14 @@ output_dir = "frames"
 os.makedirs(output_dir, exist_ok=True)
 
 # 프레임 생성
-prompt = "A fantasy landscape with castles and mountains"
+prompt = "Robot style, full body,  2:3 portrait, desert asphalt plaza at 3pm, "
+prompt += "natural lighting, 3D illustration, two-tone color scheme: dark gray and light brown"
+prompt += "high resolution, dynamic pose, volumetric lighting, fabric texture, "
+prompt += "hyper detailed hands and face, cinematic shading, highly detailed armor"
+
+
 for i in range(30):
-    image = pipe(prompt).images[0]  # PIL.Image
+    image = pipe(prompt, width=720, height=1280).images[0]
     image.save(f"{output_dir}/frame_{i:03}.png")
 
 # OpenCV로 동영상 생성
