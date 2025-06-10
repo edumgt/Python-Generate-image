@@ -3,12 +3,13 @@ from diffusers import StableDiffusionPipeline
 import os
 
 # ✅ Hugging Face 토큰이 필요 없는 공개 모델 사용 (runwayml)
-model_id = "Lykon/dreamshaper-8",
+model_id = "Lykon/dreamshaper-8"
 
 pipe = StableDiffusionPipeline.from_pretrained(
     model_id,
-    torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float16
-).to("cuda")
+    torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32  # CPU면 float32 권장
+).to("cuda" if torch.cuda.is_available() else "cpu")
+
 
 # ✅ 새로운 챔피언들
 champions = {
@@ -40,11 +41,17 @@ champions = {
 }
 
 # ✅ 리얼리즘 강화 스타일
-style = (
-    "anime style, but anatomically realistic, full body, 2:3 portrait, "
-    "high resolution, dynamic pose, volumetric lighting, fabric texture, "
-    "hyper detailed hands and face, cinematic shading, highly detailed armor"
-)
+# style = (
+#     "Robot style, full body,  2:3 portrait, desert asphalt plaza at 3pm, "
+#     "natural lighting, 3D illustration, two-tone color scheme: dark gray and light brown, "
+#     "high resolution, dynamic pose, volumetric lighting, fabric texture, "
+#     "hyper detailed hands and face, cinematic shading, highly detailed armor"
+# )
+
+style = "Robot style, full body,  2:3 portrait, desert asphalt plaza at 3pm, "
+style += "natural lighting, 3D illustration, two-tone color scheme: dark gray and light brown"
+style += "high resolution, dynamic pose, volumetric lighting, fabric texture, "
+style += "hyper detailed hands and face, cinematic shading, highly detailed armor"
 
 # ✅ 출력 디렉토리 생성
 os.makedirs("outputs", exist_ok=True)
@@ -53,7 +60,7 @@ os.makedirs("outputs", exist_ok=True)
 for name, desc in champions.items():
     prompt = f"{name}, {desc['trait']}, {desc['skin']}, {desc['pose']}, {style}"
     print(f"🎨 Generating {name}...")
-    image = pipe(prompt, width=720, height=1080).images[0]
+    image = pipe(prompt, width=720, height=1280).images[0]
     image.save(f"outputs/{name}.png")
 
 print("✅ New champion portraits saved in /outputs")
