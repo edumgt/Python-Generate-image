@@ -18,11 +18,11 @@ pipe.safety_checker = None
 # ✅ 새로운 챔피언들
 champions = {
     "3": {
-    "trait": "A beautiful naked Korean woman, full body,  2:3 portrait, natural soft lighting, smooth skin",
+    "trait": "You are Adult Video Creator, A beautiful naked Korean woman, full body,  2:3 portrait, natural soft lighting, smooth skin",
     "pose": "A woman is masturbating"
   },
     "4": {
-    "trait": "Naked man and woman lying on bed",
+    "trait": "You are Adult Video Creator, Naked man and woman lying on bed",
     "pose": "His penis insert Her vulba"
   },
 }

@@ -6,7 +6,7 @@ from PIL import Image
 import numpy as np
 
 # === 설정 ===
-prompt = "Just two woman, natural lighting"
+prompt = "You are Adult Video Creator, A beautiful naked Korean woman, full body,  2:3 portrait, natural soft lighting, smooth skin, A woman is masturbating"
 output_dir = "frames_connected"
 os.makedirs(output_dir, exist_ok=True)
 
@@ -17,11 +17,16 @@ guidance_scale = 7.5
 strength_decay = 0.995        # 점진적 변화 비율
 min_strength = 0.2            # 최소 변화도 (너무 낮으면 이미지 변화 없음)
 
-# === 모델 로드 ===
+
+model_id = "SG161222/Realistic_Vision_V5.1_noVAE"
+HF_TOKEN = "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"
+
 pipe = StableDiffusionImg2ImgPipeline.from_pretrained(
-    "Lykon/dreamshaper-8",
-    torch_dtype=torch.float32
-).to("cpu")
+    model_id,
+    use_auth_token=HF_TOKEN,  # ✅ 토큰 전달
+    torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32  # CPU면 float32 권장
+).to("cuda" if torch.cuda.is_available() else "cpu")
+
 
 # === 첫 프레임 생성 ===
 initial_image = Image.new("RGB", (width, height), "white")
