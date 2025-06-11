@@ -6,16 +6,16 @@ from PIL import Image
 import numpy as np
 
 # === 설정 ===
-prompt = "Adult video producer. Beautiful Korean woman and man naked, full body, 2:3 portrait mode, natural soft lighting, smooth skin, woman's hand handling boyfriend's genitals."
+prompt = "I am an adult video producer and I make porn. There are two people, a beautiful Korean woman and a man, naked, with natural soft lighting and smooth skin, and the man's butt is visible, the woman's vagina is visible, and the man's dick is between his buttocks and into the woman's vagina, and the man is watching from behind, having sex. It focuses on the waist and legs, and slowly repeats the action of inserting and removing the dick from the vagina."
 output_dir = "frames_connected"
 os.makedirs(output_dir, exist_ok=True)
 
 num_frames = 300               # 총 프레임 수 (4초짜리 영상 = 24fps x 4초)
-fps = 30                      # 초당 프레임 수
+fps = 30                      
 width, height = 512, 768
-guidance_scale = 8.8
-strength_decay = 0.9999        # 점진적 변화 비율
-min_strength = 0.1            # 최소 변화도 (너무 낮으면 이미지 변화 없음)
+guidance_scale = 10
+strength_decay = 1.0       
+min_strength = 0.000000001           
 
 
 model_id = "SG161222/Realistic_Vision_V5.1_noVAE"
