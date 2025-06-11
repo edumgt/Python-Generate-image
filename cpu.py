@@ -6,14 +6,14 @@ from PIL import Image
 import numpy as np
 
 # === 설정 ===
-prompt = "A full-body One Single Real humanoid mech inspired by Aatrox, standing alone in a action pose, tactical armor plating and a signature greatsword, natural lighting at 3pm, desert asphalt plaza background, two-tone color scheme: dark gray and light brown, sharp shadows, detailed textures, vertical portrait, 9:16 aspect ratio"
+prompt = "A full-body One Single Real humanoid mech inspired by Gundam, standing alone in a action pose, tactical armor plating and a signature greatsword, natural lighting at 3pm, desert asphalt plaza background, two-tone color scheme: dark gray and light brown, sharp shadows, detailed textures, vertical portrait, 9:16 aspect ratio"
 
 output_dir = "frames_connected"
 os.makedirs(output_dir, exist_ok=True)
 
 num_frames = 300
 fps = 30
-width, height = 1080, 1920
+width, height = 720, 1280
 guidance_scale = 7.5
 strength_decay = 0.88
 min_strength = 0.29
