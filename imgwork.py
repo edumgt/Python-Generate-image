@@ -675,7 +675,7 @@ os.makedirs("outputs", exist_ok=True)
 for name, desc in champions.items():
     prompt = f"{name}, {desc['trait']}, {desc['pose']}, {style}"
     print(f"🎨 Generating {name}...")
-    image = pipe(prompt, width=720, height=1080).images[0]
+    image = pipe(prompt, width=720, height=1280).images[0]
     image.save(f"outputs/{name}.png")
 
 print("✅ All champion portraits saved in /outputs")

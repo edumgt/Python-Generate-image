@@ -6,16 +6,17 @@ from PIL import Image
 import numpy as np
 
 # === 설정 ===
-prompt = "The video is mainly made with scenes of Sex scene between Korean woman and Korean man"
-sample_image_path = "sample.png"  # 미리 준비된 레퍼런스 이미지
+prompt = "Sex scene between Korean man and Korean woman, natural lighting, realistic, high quality, detailed, cinematic"
+
 output_dir = "frames_connected"
 os.makedirs(output_dir, exist_ok=True)
 
 num_frames = 300
 fps = 30
+width, height = 512, 768
 guidance_scale = 7.5
-strength_decay = 0.85
-min_strength = 0.27
+strength_decay = 0.88
+min_strength = 0.29
 
 model_id = "SG161222/Realistic_Vision_V5.1_noVAE"
 HF_TOKEN = "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"
@@ -28,7 +29,7 @@ pipe = StableDiffusionImg2ImgPipeline.from_pretrained(
 ).to("cuda" if torch.cuda.is_available() else "cpu")
 
 # === 첫 이미지 로드 ===
-initial_image = Image.open(sample_image_path).convert("RGB").resize((512, 768))
+initial_image = Image.new("RGB", (width, height), "white")
 image = pipe(prompt=prompt, image=initial_image, strength=1.0, guidance_scale=guidance_scale).images[0]
 image.save(f"{output_dir}/frame_000.png")
 
