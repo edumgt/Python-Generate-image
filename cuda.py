@@ -12,7 +12,7 @@ os.makedirs(output_dir, exist_ok=True)
 
 num_frames = 96               # 총 프레임 수 (4초짜리 영상 = 24fps x 4초)
 fps = 24                      # 초당 프레임 수
-width, height = 512, 768
+width, height = 1080, 1920
 guidance_scale = 7.5
 strength_decay = 0.985        # 점진적 변화 비율
 min_strength = 0.3            # 최소 변화도 (너무 낮으면 이미지 변화 없음)
