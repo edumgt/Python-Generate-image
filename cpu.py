@@ -6,16 +6,16 @@ from PIL import Image
 import numpy as np
 
 # === 설정 ===
-prompt = "You are Adult Video Creator, A beautiful naked Korean woman, full body,  2:3 portrait, natural soft lighting, smooth skin, A woman is masturbating"
+prompt = "Adult video producer. Beautiful Korean woman and man naked, full body, 2:3 portrait mode, natural soft lighting, smooth skin, woman's hand handling boyfriend's genitals."
 output_dir = "frames_connected"
 os.makedirs(output_dir, exist_ok=True)
 
-num_frames = 120               # 총 프레임 수 (4초짜리 영상 = 24fps x 4초)
+num_frames = 300               # 총 프레임 수 (4초짜리 영상 = 24fps x 4초)
 fps = 30                      # 초당 프레임 수
 width, height = 512, 768
-guidance_scale = 7.5
-strength_decay = 0.995        # 점진적 변화 비율
-min_strength = 0.2            # 최소 변화도 (너무 낮으면 이미지 변화 없음)
+guidance_scale = 8.8
+strength_decay = 0.9999        # 점진적 변화 비율
+min_strength = 0.1            # 최소 변화도 (너무 낮으면 이미지 변화 없음)
 
 
 model_id = "SG161222/Realistic_Vision_V5.1_noVAE"
