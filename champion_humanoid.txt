@@ -1,0 +1,662 @@
+champions = {
+  "Aatrox": {
+    "trait": "A full-body shot of one single realistic humanoid battle mech inspired by LOL Champion  Aatrox, standing alone in a powerful action pose. The mech is equipped with tactical armor plating and a large signature greatsword. The scene is set in a wide desert asphalt plaza under natural sunlight at 3pm, casting sharp shadows. The mech features a two-tone color scheme of dark gray and light brown. Highly detailed textures, cinematic lighting, 3D illustration style. Only one character is present. Vertical portrait, 9:16 aspect ratio.",
+    "pose": "engaging in dynamic action stance reflecting aatrox's style"
+  },
+  "Ahri": {
+    "trait": "A full-body shot of one single realistic humanoid battle mech inspired by LOL Champion  Ahri, standing alone in a powerful action pose, equipped with tactical armor plating and a large signature greatsword. Set in a desert asphalt plaza under natural sunlight at 3pm, casting sharp shadows. The mech features a two-tone color scheme: dark gray and light brown. Highly detailed textures, cinematic lighting, 3D illustration style, vertical portrait, 9:16 aspect ratio.",
+    "pose": "engaging in dynamic action stance reflecting ahri's style"
+  },
+  "Akali": {
+    "trait": "A full-body shot of one single realistic humanoid battle mech inspired by LOL Champion  Akali, standing alone in a powerful action pose, equipped with tactical armor plating and a large signature greatsword. Set in a desert asphalt plaza under natural sunlight at 3pm, casting sharp shadows. The mech features a two-tone color scheme: dark gray and light brown. Highly detailed textures, cinematic lighting, 3D illustration style, vertical portrait, 9:16 aspect ratio.",
+    "pose": "engaging in dynamic action stance reflecting akali's style"
+  },
+  "Alistar": {
+    "trait": "inspired by LOL Champion  alistar, ",
+    "pose": "engaging in dynamic action stance reflecting alistar's style"
+  },
+  "Amumu": {
+    "trait": "inspired by LOL Champion  amumu, ",
+    "pose": "engaging in dynamic action stance reflecting amumu's style"
+  },
+  "Anivia": {
+    "trait": "inspired by LOL Champion  anivia, ",
+    "pose": "engaging in dynamic action stance reflecting anivia's style"
+  },
+  "Annie": {
+    "trait": "inspired by LOL Champion  annie, ",
+    "pose": "engaging in dynamic action stance reflecting annie's style"
+  },
+  "Aphelios": {
+    "trait": "inspired by LOL Champion  aphelios, ",
+    "pose": "engaging in dynamic action stance reflecting aphelios's style"
+  },
+  "Ashe": {
+    "trait": "inspired by LOL Champion  ashe, ",
+    "pose": "engaging in dynamic action stance reflecting ashe's style"
+  },
+  "Aurelion Sol": {
+    "trait": "inspired by LOL Champion  aurelion sol, ",
+    "pose": "engaging in dynamic action stance reflecting aurelion sol's style"
+  },
+  "Azir": {
+    "trait": "inspired by LOL Champion  azir, ",
+    "pose": "engaging in dynamic action stance reflecting azir's style"
+  },
+  "Bard": {
+    "trait": "inspired by LOL Champion  bard, ",
+    "pose": "engaging in dynamic action stance reflecting bard's style"
+  },
+  "Bel'Veth": {
+    "trait": "inspired by LOL Champion  bel'veth, ",
+    "pose": "engaging in dynamic action stance reflecting bel'veth's style"
+  },
+  "Blitzcrank": {
+    "trait": "inspired by LOL Champion  blitzcrank, ",
+    "pose": "engaging in dynamic action stance reflecting blitzcrank's style"
+  },
+  "Brand": {
+    "trait": "inspired by LOL Champion  brand, ",
+    "pose": "engaging in dynamic action stance reflecting brand's style"
+  },
+  "Braum": {
+    "trait": "inspired by LOL Champion  braum, ",
+    "pose": "engaging in dynamic action stance reflecting braum's style"
+  },
+  "Caitlyn": {
+    "trait": "inspired by LOL Champion  caitlyn, ",
+    "pose": "engaging in dynamic action stance reflecting caitlyn's style"
+  },
+  "Camille": {
+    "trait": "inspired by LOL Champion  camille, ",
+    "pose": "engaging in dynamic action stance reflecting camille's style"
+  },
+  "Cassiopeia": {
+    "trait": "inspired by LOL Champion  cassiopeia, ",
+    "pose": "engaging in dynamic action stance reflecting cassiopeia's style"
+  },
+  "Cho'Gath": {
+    "trait": "inspired by LOL Champion  cho'gath, ",
+    "pose": "engaging in dynamic action stance reflecting cho'gath's style"
+  },
+  "Corki": {
+    "trait": "inspired by LOL Champion  corki, ",
+    "pose": "engaging in dynamic action stance reflecting corki's style"
+  },
+  "Darius": {
+    "trait": "inspired by LOL Champion  darius, ",
+    "pose": "engaging in dynamic action stance reflecting darius's style"
+  },
+  "Diana": {
+    "trait": "inspired by LOL Champion  diana, ",
+    "pose": "engaging in dynamic action stance reflecting diana's style"
+  },
+  "Dr. Mundo": {
+    "trait": "inspired by LOL Champion  dr. mundo, ",
+    "pose": "engaging in dynamic action stance reflecting dr. mundo's style"
+  },
+  "Draven": {
+    "trait": "inspired by LOL Champion  draven, ",
+    "pose": "engaging in dynamic action stance reflecting draven's style"
+  },
+  "Ekko": {
+    "trait": "inspired by LOL Champion  ekko, ",
+    "pose": "engaging in dynamic action stance reflecting ekko's style"
+  },
+  "Elise": {
+    "trait": "inspired by LOL Champion  elise, ",
+    "pose": "engaging in dynamic action stance reflecting elise's style"
+  },
+  "Evelynn": {
+    "trait": "inspired by LOL Champion  evelynn, ",
+    "pose": "engaging in dynamic action stance reflecting evelynn's style"
+  },
+  "Ezreal": {
+    "trait": "inspired by LOL Champion  ezreal, ",
+    "pose": "engaging in dynamic action stance reflecting ezreal's style"
+  },
+  "Fiddlesticks": {
+    "trait": "inspired by LOL Champion  fiddlesticks, ",
+    "pose": "engaging in dynamic action stance reflecting fiddlesticks's style"
+  },
+  "Fiora": {
+    "trait": "inspired by LOL Champion  fiora, ",
+    "pose": "engaging in dynamic action stance reflecting fiora's style"
+  },
+  "Fizz": {
+    "trait": "inspired by LOL Champion  fizz, ",
+    "pose": "engaging in dynamic action stance reflecting fizz's style"
+  },
+  "Galio": {
+    "trait": "inspired by LOL Champion  galio, ",
+    "pose": "engaging in dynamic action stance reflecting galio's style"
+  },
+  "Gangplank": {
+    "trait": "inspired by LOL Champion  gangplank, ",
+    "pose": "engaging in dynamic action stance reflecting gangplank's style"
+  },
+  "Garen": {
+    "trait": "inspired by LOL Champion  garen, ",
+    "pose": "engaging in dynamic action stance reflecting garen's style"
+  },
+  "Gnar": {
+    "trait": "inspired by LOL Champion  gnar, ",
+    "pose": "engaging in dynamic action stance reflecting gnar's style"
+  },
+  "Gragas": {
+    "trait": "inspired by LOL Champion  gragas, ",
+    "pose": "engaging in dynamic action stance reflecting gragas's style"
+  },
+  "Graves": {
+    "trait": "inspired by LOL Champion  graves, ",
+    "pose": "engaging in dynamic action stance reflecting graves's style"
+  },
+  "Gwen": {
+    "trait": "inspired by LOL Champion  gwen, ",
+    "pose": "engaging in dynamic action stance reflecting gwen's style"
+  },
+  "Hecarim": {
+    "trait": "inspired by LOL Champion  hecarim, ",
+    "pose": "engaging in dynamic action stance reflecting hecarim's style"
+  },
+  "Heimerdinger": {
+    "trait": "inspired by LOL Champion  heimerdinger, ",
+    "pose": "engaging in dynamic action stance reflecting heimerdinger's style"
+  },
+  "Illaoi": {
+    "trait": "inspired by LOL Champion  illaoi, ",
+    "pose": "engaging in dynamic action stance reflecting illaoi's style"
+  },
+  "Irelia": {
+    "trait": "inspired by LOL Champion  irelia, ",
+    "pose": "engaging in dynamic action stance reflecting irelia's style"
+  },
+  "Ivern": {
+    "trait": "inspired by LOL Champion  ivern, ",
+    "pose": "engaging in dynamic action stance reflecting ivern's style"
+  },
+  "Janna": {
+    "trait": "inspired by LOL Champion  janna, ",
+    "pose": "engaging in dynamic action stance reflecting janna's style"
+  },
+  "Jarvan IV": {
+    "trait": "inspired by LOL Champion  jarvan iv, ",
+    "pose": "engaging in dynamic action stance reflecting jarvan iv's style"
+  },
+  "Jax": {
+    "trait": "inspired by LOL Champion  jax, ",
+    "pose": "engaging in dynamic action stance reflecting jax's style"
+  },
+  "Jayce": {
+    "trait": "inspired by LOL Champion  jayce, ",
+    "pose": "engaging in dynamic action stance reflecting jayce's style"
+  },
+  "Jhin": {
+    "trait": "inspired by LOL Champion  jhin, ",
+    "pose": "engaging in dynamic action stance reflecting jhin's style"
+  },
+  "Jinx": {
+    "trait": "inspired by LOL Champion  jinx, ",
+    "pose": "engaging in dynamic action stance reflecting jinx's style"
+  },
+  "K'Sante": {
+    "trait": "inspired by LOL Champion  k'sante, ",
+    "pose": "engaging in dynamic action stance reflecting k'sante's style"
+  },
+  "Kai'Sa": {
+    "trait": "inspired by LOL Champion  kai'sa, ",
+    "pose": "engaging in dynamic action stance reflecting kai'sa's style"
+  },
+  "Kalista": {
+    "trait": "inspired by LOL Champion  kalista, ",
+    "pose": "engaging in dynamic action stance reflecting kalista's style"
+  },
+  "Karma": {
+    "trait": "inspired by LOL Champion  karma, ",
+    "pose": "engaging in dynamic action stance reflecting karma's style"
+  },
+  "Karthus": {
+    "trait": "inspired by LOL Champion  karthus, ",
+    "pose": "engaging in dynamic action stance reflecting karthus's style"
+  },
+  "Kassadin": {
+    "trait": "inspired by LOL Champion  kassadin, ",
+    "pose": "engaging in dynamic action stance reflecting kassadin's style"
+  },
+  "Katarina": {
+    "trait": "inspired by LOL Champion  katarina, ",
+    "pose": "engaging in dynamic action stance reflecting katarina's style"
+  },
+  "Kayle": {
+    "trait": "inspired by LOL Champion  kayle, ",
+    "pose": "engaging in dynamic action stance reflecting kayle's style"
+  },
+  "Kayn": {
+    "trait": "inspired by LOL Champion  kayn, ",
+    "pose": "engaging in dynamic action stance reflecting kayn's style"
+  },
+  "Kennen": {
+    "trait": "inspired by LOL Champion  kennen, ",
+    "pose": "engaging in dynamic action stance reflecting kennen's style"
+  },
+  "Kha'Zix": {
+    "trait": "inspired by LOL Champion  kha'zix, ",
+    "pose": "engaging in dynamic action stance reflecting kha'zix's style"
+  },
+  "Kindred": {
+    "trait": "inspired by LOL Champion  kindred, ",
+    "pose": "engaging in dynamic action stance reflecting kindred's style"
+  },
+  "Kled": {
+    "trait": "inspired by LOL Champion  kled, ",
+    "pose": "engaging in dynamic action stance reflecting kled's style"
+  },
+  "Kog'Maw": {
+    "trait": "inspired by LOL Champion  kog'maw, ",
+    "pose": "engaging in dynamic action stance reflecting kog'maw's style"
+  },
+  "LeBlanc": {
+    "trait": "inspired by LOL Champion  leblanc, ",
+    "pose": "engaging in dynamic action stance reflecting leblanc's style"
+  },
+  "Lee Sin": {
+    "trait": "inspired by LOL Champion  lee sin, ",
+    "pose": "engaging in dynamic action stance reflecting lee sin's style"
+  },
+  "Leona": {
+    "trait": "inspired by LOL Champion  leona, ",
+    "pose": "engaging in dynamic action stance reflecting leona's style"
+  },
+  "Lillia": {
+    "trait": "inspired by LOL Champion  lillia, ",
+    "pose": "engaging in dynamic action stance reflecting lillia's style"
+  },
+  "Lissandra": {
+    "trait": "inspired by LOL Champion  lissandra, ",
+    "pose": "engaging in dynamic action stance reflecting lissandra's style"
+  },
+  "Lucian": {
+    "trait": "inspired by LOL Champion  lucian, ",
+    "pose": "engaging in dynamic action stance reflecting lucian's style"
+  },
+  "Lulu": {
+    "trait": "inspired by LOL Champion  lulu, ",
+    "pose": "engaging in dynamic action stance reflecting lulu's style"
+  },
+  "Lux": {
+    "trait": "inspired by LOL Champion  lux, ",
+    "pose": "engaging in dynamic action stance reflecting lux's style"
+  },
+  "Malphite": {
+    "trait": "inspired by LOL Champion  malphite, ",
+    "pose": "engaging in dynamic action stance reflecting malphite's style"
+  },
+  "Malzahar": {
+    "trait": "inspired by LOL Champion  malzahar, ",
+    "pose": "engaging in dynamic action stance reflecting malzahar's style"
+  },
+  "Maokai": {
+    "trait": "inspired by LOL Champion  maokai, ",
+    "pose": "engaging in dynamic action stance reflecting maokai's style"
+  },
+  "Master Yi": {
+    "trait": "inspired by LOL Champion  master yi, ",
+    "pose": "engaging in dynamic action stance reflecting master yi's style"
+  },
+  "Milio": {
+    "trait": "inspired by LOL Champion  milio, ",
+    "pose": "engaging in dynamic action stance reflecting milio's style"
+  },
+  "Miss Fortune": {
+    "trait": "inspired by LOL Champion  miss fortune, ",
+    "pose": "engaging in dynamic action stance reflecting miss fortune's style"
+  },
+  "Mordekaiser": {
+    "trait": "inspired by LOL Champion  mordekaiser, ",
+    "pose": "engaging in dynamic action stance reflecting mordekaiser's style"
+  },
+  "Morgana": {
+    "trait": "inspired by LOL Champion  morgana, ",
+    "pose": "engaging in dynamic action stance reflecting morgana's style"
+  },
+  "Naafiri": {
+    "trait": "inspired by LOL Champion  naafiri, ",
+    "pose": "engaging in dynamic action stance reflecting naafiri's style"
+  },
+  "Nami": {
+    "trait": "inspired by LOL Champion  nami, ",
+    "pose": "engaging in dynamic action stance reflecting nami's style"
+  },
+  "Nasus": {
+    "trait": "inspired by LOL Champion  nasus, ",
+    "pose": "engaging in dynamic action stance reflecting nasus's style"
+  },
+  "Nautilus": {
+    "trait": "inspired by LOL Champion  nautilus, ",
+    "pose": "engaging in dynamic action stance reflecting nautilus's style"
+  },
+  "Neeko": {
+    "trait": "inspired by LOL Champion  neeko, ",
+    "pose": "engaging in dynamic action stance reflecting neeko's style"
+  },
+  "Nidalee": {
+    "trait": "inspired by LOL Champion  nidalee, ",
+    "pose": "engaging in dynamic action stance reflecting nidalee's style"
+  },
+  "Nilah": {
+    "trait": "inspired by LOL Champion  nilah, ",
+    "pose": "engaging in dynamic action stance reflecting nilah's style"
+  },
+  "Nocturne": {
+    "trait": "inspired by LOL Champion  nocturne, ",
+    "pose": "engaging in dynamic action stance reflecting nocturne's style"
+  },
+  "Nunu & Willump": {
+    "trait": "inspired by LOL Champion  nunu & willump, ",
+    "pose": "engaging in dynamic action stance reflecting nunu & willump's style"
+  },
+  "Olaf": {
+    "trait": "inspired by LOL Champion  olaf, ",
+    "pose": "engaging in dynamic action stance reflecting olaf's style"
+  },
+  "Orianna": {
+    "trait": "inspired by LOL Champion  orianna, ",
+    "pose": "engaging in dynamic action stance reflecting orianna's style"
+  },
+  "Ornn": {
+    "trait": "inspired by LOL Champion  ornn, ",
+    "pose": "engaging in dynamic action stance reflecting ornn's style"
+  },
+  "Pantheon": {
+    "trait": "inspired by LOL Champion  pantheon, ",
+    "pose": "engaging in dynamic action stance reflecting pantheon's style"
+  },
+  "Poppy": {
+    "trait": "inspired by LOL Champion  poppy, ",
+    "pose": "engaging in dynamic action stance reflecting poppy's style"
+  },
+  "Pyke": {
+    "trait": "inspired by LOL Champion  pyke, ",
+    "pose": "engaging in dynamic action stance reflecting pyke's style"
+  },
+  "Qiyana": {
+    "trait": "inspired by LOL Champion  qiyana, ",
+    "pose": "engaging in dynamic action stance reflecting qiyana's style"
+  },
+  "Quinn": {
+    "trait": "inspired by LOL Champion  quinn, ",
+    "pose": "engaging in dynamic action stance reflecting quinn's style"
+  },
+  "Rakan": {
+    "trait": "inspired by LOL Champion  rakan, ",
+    "pose": "engaging in dynamic action stance reflecting rakan's style"
+  },
+  "Rammus": {
+    "trait": "inspired by LOL Champion  rammus, ",
+    "pose": "engaging in dynamic action stance reflecting rammus's style"
+  },
+  "Rek'Sai": {
+    "trait": "inspired by LOL Champion  rek'sai, ",
+    "pose": "engaging in dynamic action stance reflecting rek'sai's style"
+  },
+  "Rell": {
+    "trait": "inspired by LOL Champion  rell, ",
+    "pose": "engaging in dynamic action stance reflecting rell's style"
+  },
+  "Renata Glasc": {
+    "trait": "inspired by LOL Champion  renata glasc, ",
+    "pose": "engaging in dynamic action stance reflecting renata glasc's style"
+  },
+  "Renekton": {
+    "trait": "inspired by LOL Champion  renekton, ",
+    "pose": "engaging in dynamic action stance reflecting renekton's style"
+  },
+  "Rengar": {
+    "trait": "inspired by LOL Champion  rengar, ",
+    "pose": "engaging in dynamic action stance reflecting rengar's style"
+  },
+  "Riven": {
+    "trait": "inspired by LOL Champion  riven, ",
+    "pose": "engaging in dynamic action stance reflecting riven's style"
+  },
+  "Rumble": {
+    "trait": "inspired by LOL Champion  rumble, ",
+    "pose": "engaging in dynamic action stance reflecting rumble's style"
+  },
+  "Ryze": {
+    "trait": "inspired by LOL Champion  ryze, ",
+    "pose": "engaging in dynamic action stance reflecting ryze's style"
+  },
+  "Samira": {
+    "trait": "inspired by LOL Champion  samira, ",
+    "pose": "engaging in dynamic action stance reflecting samira's style"
+  },
+  "Sejuani": {
+    "trait": "inspired by LOL Champion  sejuani, ",
+    "pose": "engaging in dynamic action stance reflecting sejuani's style"
+  },
+  "Senna": {
+    "trait": "inspired by LOL Champion  senna, ",
+    "pose": "engaging in dynamic action stance reflecting senna's style"
+  },
+  "Seraphine": {
+    "trait": "inspired by LOL Champion  seraphine, ",
+    "pose": "engaging in dynamic action stance reflecting seraphine's style"
+  },
+  "Sett": {
+    "trait": "inspired by LOL Champion  sett, ",
+    "pose": "engaging in dynamic action stance reflecting sett's style"
+  },
+  "Shaco": {
+    "trait": "inspired by LOL Champion  shaco, ",
+    "pose": "engaging in dynamic action stance reflecting shaco's style"
+  },
+  "Shen": {
+    "trait": "inspired by LOL Champion  shen, ",
+    "pose": "engaging in dynamic action stance reflecting shen's style"
+  },
+  "Shyvana": {
+    "trait": "inspired by LOL Champion  shyvana, ",
+    "pose": "engaging in dynamic action stance reflecting shyvana's style"
+  },
+  "Singed": {
+    "trait": "inspired by LOL Champion  singed, ",
+    "pose": "engaging in dynamic action stance reflecting singed's style"
+  },
+  "Sion": {
+    "trait": "inspired by LOL Champion  sion, ",
+    "pose": "engaging in dynamic action stance reflecting sion's style"
+  },
+  "Sivir": {
+    "trait": "inspired by LOL Champion  sivir, ",
+    "pose": "engaging in dynamic action stance reflecting sivir's style"
+  },
+  "Skarner": {
+    "trait": "inspired by LOL Champion  skarner, ",
+    "pose": "engaging in dynamic action stance reflecting skarner's style"
+  },
+  "Smolder": {
+    "trait": "inspired by LOL Champion  smolder, ",
+    "pose": "engaging in dynamic action stance reflecting smolder's style"
+  },
+  "Sona": {
+    "trait": "inspired by LOL Champion  sona, ",
+    "pose": "engaging in dynamic action stance reflecting sona's style"
+  },
+  "Soraka": {
+    "trait": "inspired by LOL Champion  soraka, ",
+    "pose": "engaging in dynamic action stance reflecting soraka's style"
+  },
+  "Swain": {
+    "trait": "inspired by LOL Champion  swain, ",
+    "pose": "engaging in dynamic action stance reflecting swain's style"
+  },
+  "Sylas": {
+    "trait": "inspired by LOL Champion  sylas, ",
+    "pose": "engaging in dynamic action stance reflecting sylas's style"
+  },
+  "Syndra": {
+    "trait": "inspired by LOL Champion  syndra, ",
+    "pose": "engaging in dynamic action stance reflecting syndra's style"
+  },
+  "Tahm Kench": {
+    "trait": "inspired by LOL Champion  tahm kench, ",
+    "pose": "engaging in dynamic action stance reflecting tahm kench's style"
+  },
+  "Taliyah": {
+    "trait": "inspired by LOL Champion  taliyah, ",
+    "pose": "engaging in dynamic action stance reflecting taliyah's style"
+  },
+  "Talon": {
+    "trait": "inspired by LOL Champion  talon, ",
+    "pose": "engaging in dynamic action stance reflecting talon's style"
+  },
+  "Taric": {
+    "trait": "inspired by LOL Champion  taric, ",
+    "pose": "engaging in dynamic action stance reflecting taric's style"
+  },
+  "Teemo": {
+    "trait": "inspired by LOL Champion  teemo, ",
+    "pose": "engaging in dynamic action stance reflecting teemo's style"
+  },
+  "Thresh": {
+    "trait": "inspired by LOL Champion  thresh, ",
+    "pose": "engaging in dynamic action stance reflecting thresh's style"
+  },
+  "Tristana": {
+    "trait": "inspired by LOL Champion  tristana, ",
+    "pose": "engaging in dynamic action stance reflecting tristana's style"
+  },
+  "Trundle": {
+    "trait": "inspired by LOL Champion  trundle, ",
+    "pose": "engaging in dynamic action stance reflecting trundle's style"
+  },
+  "Tryndamere": {
+    "trait": "inspired by LOL Champion  tryndamere, ",
+    "pose": "engaging in dynamic action stance reflecting tryndamere's style"
+  },
+  "Twisted Fate": {
+    "trait": "inspired by LOL Champion  twisted fate, ",
+    "pose": "engaging in dynamic action stance reflecting twisted fate's style"
+  },
+  "Twitch": {
+    "trait": "inspired by LOL Champion  twitch, ",
+    "pose": "engaging in dynamic action stance reflecting twitch's style"
+  },
+  "Udyr": {
+    "trait": "inspired by LOL Champion  udyr, ",
+    "pose": "engaging in dynamic action stance reflecting udyr's style"
+  },
+  "Urgot": {
+    "trait": "inspired by LOL Champion  urgot, ",
+    "pose": "engaging in dynamic action stance reflecting urgot's style"
+  },
+  "Varus": {
+    "trait": "inspired by LOL Champion  varus, ",
+    "pose": "engaging in dynamic action stance reflecting varus's style"
+  },
+  "Vayne": {
+    "trait": "inspired by LOL Champion  vayne, ",
+    "pose": "engaging in dynamic action stance reflecting vayne's style"
+  },
+  "Veigar": {
+    "trait": "inspired by LOL Champion  veigar, ",
+    "pose": "engaging in dynamic action stance reflecting veigar's style"
+  },
+  "Vel'Koz": {
+    "trait": "inspired by LOL Champion  vel'koz, ",
+    "pose": "engaging in dynamic action stance reflecting vel'koz's style"
+  },
+  "Vex": {
+    "trait": "inspired by LOL Champion  vex, ",
+    "pose": "engaging in dynamic action stance reflecting vex's style"
+  },
+  "Vi": {
+    "trait": "inspired by LOL Champion  vi, ",
+    "pose": "engaging in dynamic action stance reflecting vi's style"
+  },
+  "Viego": {
+    "trait": "inspired by LOL Champion  viego, ",
+    "pose": "engaging in dynamic action stance reflecting viego's style"
+  },
+  "Viktor": {
+    "trait": "inspired by LOL Champion  viktor, ",
+    "pose": "engaging in dynamic action stance reflecting viktor's style"
+  },
+  "Vladimir": {
+    "trait": "inspired by LOL Champion  vladimir, ",
+    "pose": "engaging in dynamic action stance reflecting vladimir's style"
+  },
+  "Volibear": {
+    "trait": "inspired by LOL Champion  volibear, ",
+    "pose": "engaging in dynamic action stance reflecting volibear's style"
+  },
+  "Warwick": {
+    "trait": "inspired by LOL Champion  warwick, ",
+    "pose": "engaging in dynamic action stance reflecting warwick's style"
+  },
+  "Wukong": {
+    "trait": "inspired by LOL Champion  wukong, ",
+    "pose": "engaging in dynamic action stance reflecting wukong's style"
+  },
+  "Xayah": {
+    "trait": "inspired by LOL Champion  xayah, ",
+    "pose": "engaging in dynamic action stance reflecting xayah's style"
+  },
+  "Xerath": {
+    "trait": "inspired by LOL Champion  xerath, ",
+    "pose": "engaging in dynamic action stance reflecting xerath's style"
+  },
+  "Xin Zhao": {
+    "trait": "inspired by LOL Champion  xin zhao, ",
+    "pose": "engaging in dynamic action stance reflecting xin zhao's style"
+  },
+  "Yasuo": {
+    "trait": "inspired by LOL Champion  yasuo, ",
+    "pose": "engaging in dynamic action stance reflecting yasuo's style"
+  },
+  "Yone": {
+    "trait": "inspired by LOL Champion  yone, ",
+    "pose": "engaging in dynamic action stance reflecting yone's style"
+  },
+  "Yorick": {
+    "trait": "inspired by LOL Champion  yorick, ",
+    "pose": "engaging in dynamic action stance reflecting yorick's style"
+  },
+  "Yuumi": {
+    "trait": "inspired by LOL Champion  yuumi, ",
+    "pose": "engaging in dynamic action stance reflecting yuumi's style"
+  },
+  "Zac": {
+    "trait": "inspired by LOL Champion  zac, ",
+    "pose": "engaging in dynamic action stance reflecting zac's style"
+  },
+  "Zed": {
+    "trait": "inspired by LOL Champion  zed, ",
+    "pose": "engaging in dynamic action stance reflecting zed's style"
+  },
+  "Zeri": {
+    "trait": "inspired by LOL Champion  zeri, ",
+    "pose": "engaging in dynamic action stance reflecting zeri's style"
+  },
+  "Ziggs": {
+    "trait": "inspired by LOL Champion  ziggs, ",
+    "pose": "engaging in dynamic action stance reflecting ziggs's style"
+  },
+  "Zilean": {
+    "trait": "inspired by LOL Champion  zilean, ",
+    "pose": "engaging in dynamic action stance reflecting zilean's style"
+  },
+  "Zoe": {
+    "trait": "inspired by LOL Champion  zoe, ",
+    "pose": "engaging in dynamic action stance reflecting zoe's style"
+  },
+  "Zyra": {
+    "trait": "inspired by LOL Champion  zyra, ",
+    "pose": "engaging in dynamic action stance reflecting zyra's style"
+  }
+}
+
+# 고정된 스타일 및 색상 조합
+style = "Real Humanoid style, full body, desert asphalt plaza at 3pm, natural lighting, 3D illustration, two-tone color scheme: dark gray and light brown"
+

@@ -4,27 +4,28 @@ import os
 import cv2
 from PIL import Image
 import numpy as np
+import random
 
 # === 설정 ===
-# prompt = "A full-body One Single Real humanoid mech inspired by LOL Champion  Overwatch Hanzo, standing alone , "
-# prompt += "tactical armor plating , natural lighting at 3pm, desert asphalt plaza "
-# prompt += "background, color scheme is just gray and brown, sharp shadows, very high detailed textures"
-
-
 output_dir = "frames_connected"
 os.makedirs(output_dir, exist_ok=True)
 
 num_frames = 300
 fps = 30
 width, height = 800, 600
-guidance_scale = 8.0
-strength_decay = 0.95
-min_strength = 0.2
+guidance_scale = 7.5
+strength = 0.75  # 고정된 strength
 
-# playgroundai/playground-v2-1024px-aesthetic
-# SG161222/Realistic_Vision_V6.0_B1_noVAE
 model_id = "SG161222/Realistic_Vision_V5.1_noVAE"
 HF_TOKEN = "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"
+
+# 프롬프트 설정
+base_prompt = (
+    "Full-body female humanoid robot, 25-year-old Japanese appearance, "
+    "working as a nurse in a modern hospital, wearing a white and pink nurse uniform with a name tag and stethoscope, "
+    "realistic chrome and ceramic body with soft joint covers, standing beside a hospital bed with medical equipment in the background, "
+    "bright clinical lighting, soft focus, photorealistic"
+)
 
 # === 모델 로드 ===
 pipe = StableDiffusionImg2ImgPipeline.from_pretrained(
@@ -33,17 +34,24 @@ pipe = StableDiffusionImg2ImgPipeline.from_pretrained(
     torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32
 ).to("cuda" if torch.cuda.is_available() else "cpu")
 
-# === 첫 이미지 로드 ===
+# === 초기 이미지 준비 ===
 initial_image = Image.new("RGB", (width, height), "white")
-image = pipe(prompt=prompt, image=initial_image, strength=1.0, guidance_scale=guidance_scale).images[0]
-image.save(f"{output_dir}/frame_000.png")
 
-# === 이어지는 프레임 생성 ===
-for i in range(1, num_frames):
-    strength = max(min_strength, strength_decay ** i)
-    image = pipe(prompt=prompt, image=image, strength=strength, guidance_scale=guidance_scale).images[0]
-    image.save(f"{output_dir}/frame_{i:03}.png")
-    print(f"🖼️ 프레임 {i:03} 저장 완료 (strength={strength:.4f})")
+# === 프레임 생성 ===
+for i in range(num_frames):
+    # 동일한 프롬프트지만 살짝씩 random noise 주기 (seed 없이 입력의 다양성 확보)
+    prompt = base_prompt + f", subtle variation {random.randint(1, 10000)}"
+
+    result = pipe(
+        prompt=prompt,
+        image=initial_image,
+        strength=strength,
+        guidance_scale=guidance_scale
+    ).images[0]
+
+    frame_path = f"{output_dir}/frame_{i:03}.png"
+    result.save(frame_path)
+    print(f"🖼️ 프레임 {i:03} 저장 완료")
 
 # === 영상으로 저장 ===
 frame_files = sorted([f for f in os.listdir(output_dir) if f.endswith(".png")])
