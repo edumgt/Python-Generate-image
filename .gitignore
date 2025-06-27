@@ -1,7 +1,7 @@
 /venv
 /frames
 /frames_connected
-/outputs
+/output*
 *.key
 /jogging*
 /pose*
