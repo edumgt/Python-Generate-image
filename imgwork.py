@@ -5,215 +5,77 @@ os.environ["DISABLE_FLASH_ATTN"] = "1"
 from PIL import Image
 from transformers import CLIPImageProcessor
 processor = CLIPImageProcessor.from_pretrained("openai/clip-vit-base-patch32")
-# prompt = "Full-body female humanoid robot, 25-year-old Japanese appearance, working as a McDonald's crew member, wearing red and yellow uniform with a name tag, realistic chrome and ceramic body with soft joint covers, standing behind a cashier counter, warm fast food restaurant interior, cinematic lighting, soft focus, photorealistic, elegant pose, 9:16 portrait"
-# prompt = "Full-body female humanoid robot, 25-year-old Japanese appearance, working as a nurse in a modern hospital, wearing a white and pink nurse uniform with a name tag and stethoscope, realistic chrome and ceramic body with soft joint covers, standing beside a hospital bed with medical equipment in the background, bright clinical lighting, soft focus, photorealistic, gentle and caring pose, 9:16 portrait"
-champions= {
-  "Tracer": {
-    "prompt": "Robotics Slim female hero with short brown spiky hair, orange chronal jumpsuit, yellow-tinted visor, dual pulse pistols, dynamic pose with time trail effect, futuristic London backdrop",
-    "style": "Overwatch 2 style"
+
+
+champions = {
+  "1": {
+    "prompt": "Yasuo (left) and Riven (right) facing off on a bright urban street at midday. Passersby watch with awe and fear from the sidewalks. Tension builds as they prepare to clash. 9:16 vertical frame, cinematic light and wind effects."
   },
-  "Sojourn": {
-    "prompt": "Robotics Athletic black female with white mohawk, red glowing cybernetic eye, sleek blue combat suit, railgun raised, cyberpunk trainyard setting, high-fidelity detail",
-    "style": "Overwatch 2 style"
+  "2": {
+    "prompt": "Ahri and Zed stand in combat-ready poses on a busy city street in daylight. Pedestrians step back, watching nervously from storefronts and balconies. Magical energy shimmers between them in a 9:16 portrait shot."
   },
-  "Junker Queen": {
-    "prompt": "Robotics Tall punk-style female warlord with mohawk, face paint, spiked armor, wielding shotgun and magnetic axe, dystopian gladiator arena background",
-    "style": "Overwatch 2 style"
+  "3": {
+    "prompt": "Garen (left) and Darius (right) stare each other down in the middle of a sunny road. Cars stopped behind them, civilians recording with smartphones from the sidewalk. Bold sunlight and heat haze enhance the standoff."
   },
-  "Ramattra": {
-    "prompt": "Robotics Ominous omnic monk with angular black-purple armor, flowing scarf, glowing nanite effects surrounding hands, destroyed monastery in background",
-    "style": "Overwatch 2 style"
+  "4": {
+    "prompt": "Lux and Morgana stand with glowing magic ready on a clean city block. Office workers and shoppers gather around, stunned by the magical duel about to erupt. Portrait aspect, daylight with soft magical glow."
   },
-  "Kiriko": {
-    "prompt": "Robotics Young Japanese healer with fox mask on head, red and white modern shrine outfit, holding kunai, blue spirit fox and cherry blossom shrine behind her",
-    "style": "Overwatch 2 style"
+  "5": {
+    "prompt": "Jinx (left) wields her rocket launcher as Vi (right) raises her fists in the middle of a bustling shopping district street. People peek out from behind vending machines and store windows. High tension, 9:16 shot, vivid color."
   },
-  "Reinhardt": {
-    "prompt": "Robotics Towering knight in silver-gray rocket armor, lion-emblazoned shoulder plate, holding massive hammer, blue energy shield, castle ruins battlefield",
-    "style": "Overwatch 2 style"
+  "6": {
+    "prompt": "Lee Sin and Sett face each other in fighting stances at a street corner, midday sun casting sharp shadows. Bystanders gather behind caution tape, filming with phones. Martial arts street duel energy, cinematic 9:16 layout."
   },
-  "Sigma": {
-    "prompt": "Robotics Floating scientist in blue gravity suit, bald with glowing scars, rocks orbiting around him, distorted gravity field in laboratory background",
-    "style": "Overwatch 2 style"
+  "7": {
+    "prompt": "Fiora and Camille circle each other on a tiled sidewalk in a high-end urban plaza. Elegant onlookers in suits and dresses stand at a distance. Steel and sunlight shimmer in the 9:16 vertical frame."
   },
-  "Cassidy": {
-    "prompt": "Robotics Cowboy with red serape, cybernetic right arm, revolver in spinning motion, cigar in mouth, golden desert town at sunset",
-    "style": "Overwatch 2 style"
+  "8": {
+    "prompt": "Katarina (left) and Akali (right) exchange deadly glances in the middle of a narrow alley street, lit by daylight from above. Civilians freeze in place, hiding near trash bins or watching from above. High tension urban ninja vibe."
   },
-  "Genji": {
-    "prompt": "Robotics Cyborg ninja in green-accented silver armor, glowing dragon emblem on chest, katana unsheathed, Japanese rooftop background",
-    "style": "Overwatch 2 style"
+  "9": {
+    "prompt": "Vayne and Draven lock eyes on a public square in a modern city, mid-day sun glowing. Spectators behind barricades whisper in anticipation. Vayne’s crossbow is raised, Draven spins his axes casually."
   },
-  "Hanzo": {
-    "prompt": "Robotics Japanese archer with tattoos, tied-up hair, traditional blue robe, spirit dragon coiling behind him, ancient temple battlefield",
-    "style": "Overwatch 2 style"
+  "10": {
+    "prompt": "Shen and Master Yi prepare to duel on a broad pedestrian crossing. A traffic light blinks red while people across the street stop and stare. Tension, sunlight, and spiritual energy fill the air."
   },
-  "Echo": {
-    "prompt": "Robotics Futuristic female android with white-blue armor, glowing wings, soft robotic features, floating in digital sky background",
-    "style": "Overwatch 2 style"
+  "11": {
+    "prompt": "Tryndamere (left) roars in the middle of a commercial road while Renekton (right) snarls from across the street. Pedestrians rush away, others watch from inside a café. Dust and heat waves enhance the tension."
   },
-  "Sombra": {
-    "prompt": "Robotics Stealthy hacker with undercut purple hair, digital cloak, neon circuits glowing, disappearing into glitching urban alleyway",
-    "style": "Overwatch 2 style"
+  "12": {
+    "prompt": "Irelia and Gwen stand ready on a wide street lined with trees and shops. Floating blades shimmer in sunlight. Curious children and adults peek from shop awnings, frozen in suspense. Magical urban atmosphere."
   },
-  "Widowmaker": {
-    "prompt": "Robotics Purple-skinned sniper with long ponytail, red visor eye, tight blue bodysuit, perched on tower with sniper rifle, nighttime city view",
-    "style": "Overwatch 2 style"
+  "13": {
+    "prompt": "Aatrox and Kayn confront each other in broad daylight in a downtown avenue. Their dark energy distorts reality slightly. People flee in the distance, some frozen mid-step. Intense and apocalyptic urban showdown."
   },
-  "Bastion": {
-    "prompt": "Robotics Robotic unit with moss and rust details, bird on shoulder, transforming between turret and recon mode, peaceful forest background",
-    "style": "Overwatch 2 style"
+  "14": {
+    "prompt": "Swain and Malzahar begin chanting on opposite sides of a sunny city street, void and demon magic swirling. Cars halted mid-road, pedestrians watch in dread. Magical chaos brewing, captured in 9:16."
   },
-  "Torbj\u00f6rn": {
-    "prompt": "Robotics Short engineer with red beard, mechanical arm, turret on back, welding goggles, industrial forge setting",
-    "style": "Overwatch 2 style"
+  "15": {
+    "prompt": "Ezreal (left) powers up his gauntlet while Lucian (right) aims his guns across a bright urban crosswalk. Street signs flicker from energy, and a crowd gathers behind barriers. Bright and heroic visual tone."
   },
-  "Zenyatta": {
-    "prompt": "Robotics Floating omnic monk with bronze plating, glowing orbs circling head, meditative pose, tranquil temple background",
-    "style": "Overwatch 2 style"
+  "16": {
+    "prompt": "Rengar and Kha’Zix growl across a construction site avenue in broad daylight. Hard hats and workers stare from scaffoldings, some filming. A modern jungle setting with heavy industrial texture and predator tension."
   },
-  "Lucio": {
-    "prompt": "Robotics Brazilian DJ with green visor, dreadlocks, glowing sonic amplifier, wall-riding across neon city arena",
-    "style": "Overwatch 2 style"
+  "17": {
+    "prompt": "Annie (left) with Tibbers summoned, and Sylas (right) gripping charged chains, face off in front of a modern mall entrance. Families stand frozen on the steps. Bright sun with glowing magical tension fills the air."
   },
-  "Moira": {
-    "prompt": "Robotics Pale scientist with red and black coat, glowing purple and yellow hands, biotic mist swirling, lab corridor behind",
-    "style": "Overwatch 2 style"
+  "18": {
+    "prompt": "Orianna floats calmly at one end of a wide shopping street, Viktor crackling with hextech energy at the other. People watch from rooftop cafés and balconies. Daylight and tech energy blend in futuristic tension."
   },
-  "Mercy": {
-    "prompt": "Robotics Swiss healer with white armor and gold halo wings, holding Caduceus staff, glowing light from behind in futuristic hospital",
-    "style": "Overwatch 2 style"
+  "19": {
+    "prompt": "Thresh and Pyke stare each other down on a pier-side road in a coastal city. Green mist rises from sewer grates. Tourists and locals back away slowly as the atmosphere grows darker. Urban nautical gothic scene, 9:16 frame."
   },
-  "Ana": {
-    "prompt": "Robotics Elder Egyptian sniper with hooded cloak, eye patch, tactical rifle glowing blue, desert ruins in background",
-    "style": "Overwatch 2 style"
-  },
-  "D.Va": {
-    "prompt": "Robotics Korean gamer pilot with long brown hair, bubblegum, wearing pink-blue jumpsuit, standing in front of massive pink mech in hangar",
-    "style": "Overwatch 2 style"
-  },
-  "Orisa": {
-    "prompt": "Robotics Four-legged centaur-like omnic with gold-green armor, energy spear charged, defending Numbani streets",
-    "style": "Overwatch 2 style"
-  },
-  "Roadhog": {
-    "prompt": "Robotics Large masked brawler with tattoos, gas mask, hook and scrap gun, standing in grimy alley with graffiti walls",
-    "style": "Overwatch 2 style"
-  },
-  "Junkrat": {
-    "prompt": "Robotics Wild demolitionist with spiked hair, missing tooth, grenades and trap gear, laughing maniacally in desert junkyard",
-    "style": "Overwatch 2 style"
-  },
-  "Symmetra": {
-    "prompt": "Robotics Indian architect in sleek light-blue armor, creating hard-light construct with her fingers, high-tech city background",
-    "style": "Overwatch 2 style"
-  },
-  "Pharah": {
-    "prompt": "Robotics Egyptian woman in heavy blue Raptora armor, rocket launcher aimed, wings igniting mid-air over battlefield",
-    "style": "Overwatch 2 style"
-  },
-  "Mei": {
-    "prompt": "Robotics Scientist with blue parka, snow goggles, cryo-blaster in hand, snowy arctic base setting, small Snowball robot floating beside",
-    "style": "Overwatch 2 style"
-  },
-  "Winston": {
-    "prompt": "Robotics Gorilla scientist in white armor, glasses, jumping with Tesla cannon charged, lab background with broken machinery",
-    "style": "Overwatch 2 style"
-  },
-  "Reaper": {
-    "prompt": "Robotics Dark wraith-like figure in black hooded coat, white skull mask, dual shotguns, smoke and shadows swirling around him",
-    "style": "Overwatch 2 style"
-  },
-  "Soldier: 76": {
-    "prompt": "Robotics Veteran soldier with blue armor and red visor mask, pulse rifle firing, sprinting across destroyed street, military debris",
-    "style": "Overwatch 2 style"
-  },
-  "Zarya": {
-    "prompt": "Robotics Muscular Russian woman with pink hair, power armor and glowing particle cannon, energy shield surrounding her in urban battlefield",
-    "style": "Overwatch 2 style"
-  },
-  "Brigitte": {
-    "prompt": "Robotics Young female squire in yellow armor, brown ponytail, holding energy shield and flail, standing confidently in castle courtyard",
-    "style": "Overwatch 2 style"
-  },
-  "Ashe": {
-    "prompt": "Robotics White-haired outlaw with black vest, red lipstick, lever-action rifle resting on shoulder, dynamite belt, omnic butler behind her",
-    "style": "Overwatch 2 style"
-  },
-  "Baptiste": {
-    "prompt": "Robotics Combat medic with teal-orange armor, visor goggles, biotic launcher and healing field generator, futuristic city plaza",
-    "style": "Overwatch 2 style"
-  },
-  "Lifeweaver": {
-    "prompt": "Robotics Elegant man with long hair, pink-gold floral tech armor, glowing petal platform in hand, standing in garden with cherry blossoms",
-    "style": "Overwatch 2 style"
-  },
-  "Illari": {
-    "prompt": "Robotics Solar-powered warrior with glowing yellow markings, golden armor and energy rifle, sunset background with Incan temple",
-    "style": "Overwatch 2 style"
-  },
-  "Mauga": {
-    "prompt": "Robotics Massive Samoan tank with tribal tattoos, dual chainguns, red power armor, glowing eyes, volcanic battlefield with smoke and lava",
-    "style": "Overwatch 2 style"
-  },
-  "Wrecking Ball": {
-    "prompt": "Robotics Spherical orange mech with hamster cockpit open, small pilot with headset inside, transforming legs extended, scrapyard setting",
-    "style": "Overwatch 2 style"
-  },
-  "Doomfist": {
-    "prompt": "Robotics Powerful brawler with cybernetic golden gauntlet, bald head, red markings, shirtless upper body, charging through collapsed building",
-    "style": "Overwatch 2 style"
+  "20": {
+    "prompt": "Nasus and Yorick face each other in a large plaza near a historic landmark, their presence towering over humans frozen in awe. Pigeons scatter, storm clouds begin to gather despite the daytime light. Ancient energy meets city life."
   }
 }
 
 
-
-
-# prompt = "A cute fluffy puppy playing joyfully in a sunny green field, chasing a colorful butterfly. The dog has big round eyes, floppy ears, and a happy expression. The background is filled with blooming flowers, soft sunlight, and blue sky. Wholesome, heartwarming, Pixar-style illustration, highly detailed, 4K resolution."
-# champions= {
-
-#     "1": {
-#       "prompt": prompt
-#     },
-#     "2": {
-#       "prompt": prompt
-#     },
-#     "3": {
-      
-#       "prompt": prompt
-#     },
-
-#     "4": {
-#       "prompt": prompt
-#     },
-    
-
-#     "5": {
-#       "prompt": prompt
-#     },
-
-#     "6": {
-#       "prompt": prompt
-#     },
-    
-
-#     "7": {
-#       "prompt": prompt
-#     }
-
-# }
-
-
-
-
-
-model_id = "SG161222/Realistic_Vision_V5.1_noVAE"
-# model_id = "DeepFloyd/IF-I-M-v1.0"
-# model_id = "stabilityai/stable-diffusion-xl-base-1.0"
 # model_id = "Lykon/dreamshaper-8"
-# model_id = "rinna/japanese-stable-diffusion"
-# model_id = "lllyasviel/control_v11p_sd15_openpose"
-HF_TOKEN = "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"
+# model_id = "SG161222/Realistic_Vision_V5.1_noVAE"
+model_id = "black-forest-labs/FLUX.1-dev"
+
+HF_TOKEN = "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"
 
 # === 모델 로드 ===
 pipe = StableDiffusionPipeline.from_pretrained(
