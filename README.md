@@ -47,6 +47,8 @@
 ## 빠른 시작 예시
 
 ```bash
+python3 -m venv .venv
+source .venv/bin/activate
 export HF_TOKEN="hf_your_real_token"
 python 3.py
 ```

@@ -3,10 +3,10 @@
 /frames_connected
 /output*
 *.key
-/jogging*
-/pose*
 *.mp3
 *.mp4
 /a*
 /i*
 /r*
+.venv/
+/.venv/
