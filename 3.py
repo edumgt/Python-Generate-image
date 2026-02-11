@@ -6,7 +6,7 @@ import os
 # model_id = "Lykon/dreamshaper-8"
 # model_id = "runwayml/stable-diffusion-v1-5"
 model_id = "SG161222/Realistic_Vision_V5.1_noVAE"
-HF_TOKEN = "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"
+HF_TOKEN = os.getenv("HF_TOKEN", "hf_***MASKED***")
 
 pipe = StableDiffusionPipeline.from_pretrained(
     model_id,
@@ -18,12 +18,12 @@ pipe.safety_checker = None
 # ✅ 새로운 챔피언들
 champions = {
     "3": {
-    "trait": "You are Adult Video Creator, A beautiful naked Korean woman, full body,  2:3 portrait, natural soft lighting, smooth skin",
-    "pose": "A woman is masturbating"
+    "trait": "A Korean martial artist in a modern training outfit, full body, 2:3 portrait, natural soft lighting, smooth skin",
+    "pose": "Standing in a confident sparring stance"
   },
     "4": {
-    "trait": "You are Adult Video Creator, Naked man and woman lying on bed",
-    "pose": "His penis insert Her vulba"
+    "trait": "Two athletes preparing for a fitness photoshoot in a studio",
+    "pose": "Posing back-to-back with energetic expressions"
   },
 }
 

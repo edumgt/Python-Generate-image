@@ -24,7 +24,7 @@ min_strength = 0.2
 # playgroundai/playground-v2-1024px-aesthetic
 # SG161222/Realistic_Vision_V6.0_B1_noVAE
 model_id = "SG161222/Realistic_Vision_V5.1_noVAE"
-HF_TOKEN = "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"
+HF_TOKEN = os.getenv("HF_TOKEN", "hf_***MASKED***")
 
 # === 모델 로드 ===
 pipe = StableDiffusionImg2ImgPipeline.from_pretrained(

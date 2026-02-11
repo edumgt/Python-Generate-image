@@ -17,7 +17,7 @@ guidance_scale = 7.5
 strength = 0.75  # 고정된 strength
 
 model_id = "SG161222/Realistic_Vision_V5.1_noVAE"
-HF_TOKEN = "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"
+HF_TOKEN = os.getenv("HF_TOKEN", "hf_***MASKED***")
 
 # 프롬프트 설정
 base_prompt = (
