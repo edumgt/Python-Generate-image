@@ -75,7 +75,7 @@ champions = {
 # model_id = "SG161222/Realistic_Vision_V5.1_noVAE"
 model_id = "black-forest-labs/FLUX.1-dev"
 
-HF_TOKEN = "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"
+HF_TOKEN = os.getenv("HF_TOKEN", "hf_***MASKED***")
 
 # === 모델 로드 ===
 pipe = StableDiffusionPipeline.from_pretrained(
