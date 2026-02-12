@@ -6,25 +6,29 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
+from backend.app.generator import GenerateRequest, GenerationResult, GeneratorService
+
 BASE_DIR = Path(__file__).resolve().parents[2]
 FRONTEND_DIR = BASE_DIR / "frontend"
+OUTPUT_DIR = BASE_DIR / "generated"
 
 
 class HealthResponse(BaseModel):
     status: str
 
 
-class StackItem(BaseModel):
-    name: str
-    category: str
-    description: str
-
-
 class FilesResponse(BaseModel):
     python_files: list[str]
 
 
-app = FastAPI(title="python-generate-image dashboard", version="1.0.0")
+class GenerationOptions(BaseModel):
+    models: list[str]
+    output_types: list[str]
+    video_sizes: list[str]
+
+
+app = FastAPI(title="python-generate-image studio", version="2.0.0")
+service = GeneratorService(output_dir=OUTPUT_DIR)
 
 app.add_middleware(
     CORSMiddleware,
@@ -40,28 +44,31 @@ def health() -> HealthResponse:
     return HealthResponse(status="ok")
 
 
-@app.get("/api/stack", response_model=list[StackItem])
-def stack() -> list[StackItem]:
-    return [
-        StackItem(name="Python 3", category="Language", description="Core runtime for scripts and API service."),
-        StackItem(name="FastAPI", category="Backend", description="REST API and static file serving."),
-        StackItem(name="Vanilla JavaScript", category="Frontend", description="Lightweight browser UI without framework."),
-        StackItem(name="PyTorch", category="AI", description="Tensor runtime for CPU/GPU inference."),
-        StackItem(name="Diffusers", category="AI", description="Stable Diffusion and related image generation pipelines."),
-        StackItem(name="OpenCV/Pillow", category="Media", description="Frame and image processing utilities."),
-        StackItem(name="FFmpeg", category="Media", description="Video encoding and audio merge pipeline."),
-        StackItem(name="Docker", category="DevOps", description="Container-based local execution and testing."),
-    ]
-
-
 @app.get("/api/files", response_model=FilesResponse)
 def files() -> FilesResponse:
     python_files = sorted(path.name for path in BASE_DIR.glob("*.py"))
     return FilesResponse(python_files=python_files)
 
 
+@app.get("/api/options", response_model=GenerationOptions)
+def options() -> GenerationOptions:
+    return GenerationOptions(
+        models=service.available_models(),
+        output_types=["image", "video"],
+        video_sizes=list(service.VIDEO_SIZES.keys()),
+    )
+
+
+@app.post("/api/generate", response_model=GenerationResult)
+def generate(payload: GenerateRequest) -> GenerationResult:
+    return service.generate(payload)
+
+
 if FRONTEND_DIR.exists():
     app.mount("/static", StaticFiles(directory=FRONTEND_DIR), name="static")
+
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+app.mount("/outputs", StaticFiles(directory=OUTPUT_DIR), name="outputs")
 
 
 @app.get("/")

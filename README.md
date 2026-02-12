@@ -1,20 +1,23 @@
 # python-generate-image
 
 간단한 Python 기반 이미지/영상 생성 실험 저장소입니다.  
-`diffusers`와 `torch`를 이용해 텍스트→이미지, 이미지→이미지, 포즈 기반 영상 프레임 생성, ffmpeg 후처리(영상 합성/오디오 병합)를 수행합니다.
+이제 단일 FastAPI 백엔드 모듈과 프런트엔드가 결합된 **생성 스튜디오** 형태로 동작합니다.
 
-## 기술 문서
+## 웹 스튜디오 기능
 
-상세 기술 스택 문서는 `DOC/Chapter01.md` ~ `DOC/Chapter10.md`를 참고하세요.
+- Hugging Face 모델 선택
+- 이미지/동영상(미리보기 GIF) 생성 모드 선택
+- 이미지 Width/Height 입력
+- 동영상 사이즈 선택 (square / landscape / portrait)
+- 프롬프트 입력 후 결과 생성 및 미리보기
 
-## 웹 대시보드 (FastAPI + Vanilla JS)
+## API
 
-- 백엔드: FastAPI
-- 프런트엔드: Vanilla JS (정적 파일)
-- 주요 API
-  - `GET /api/health`
-  - `GET /api/stack`
-  - `GET /api/files`
+- `GET /api/health`
+- `GET /api/options`
+- `POST /api/generate`
+- `GET /api/files`
+- `GET /outputs/{filename}`
 
 ## 로컬 실행
 

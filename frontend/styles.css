@@ -18,13 +18,9 @@ body {
 }
 
 .container {
-  max-width: 900px;
+  max-width: 920px;
   margin: 0 auto;
   padding: 32px 16px 48px;
-}
-
-h1 {
-  margin-bottom: 24px;
 }
 
 .panel {
@@ -40,13 +36,56 @@ h2 {
   color: var(--accent);
 }
 
-ul {
-  margin: 0;
-  padding-left: 20px;
+.grid-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
 }
 
-li {
-  margin: 8px 0;
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+input,
+select,
+textarea,
+button {
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #0b1220;
+  color: var(--text);
+  padding: 10px;
+}
+
+button {
+  cursor: pointer;
+  background: #0891b2;
+  border: none;
+  font-weight: 700;
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.span-2,
+button {
+  grid-column: 1 / -1;
+}
+
+.result-media {
+  width: 100%;
+  max-height: 720px;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 1px solid #1f2937;
+}
+
+.hidden {
+  display: none;
 }
 
 .muted {
