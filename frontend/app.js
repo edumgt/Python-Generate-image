@@ -65,7 +65,8 @@ async function generate(event) {
       body: JSON.stringify(payload),
     });
 
-    resultImage.src = `${data.file_url}?t=${Date.now()}`;
+    const cacheBustedFileUrl = `${data.file_url}?t=${Date.now()}`;
+    resultImage.src = data.data_url || cacheBustedFileUrl;
     resultImage.classList.remove('hidden');
     statusEl.textContent = `완료: ${data.model_id} / ${data.width}x${data.height}`;
   } catch (error) {

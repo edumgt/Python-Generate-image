@@ -44,3 +44,4 @@ def test_generate_image() -> None:
     assert payload["width"] == 512
     assert payload["height"] == 512
     assert payload["file_url"].startswith("/outputs/asset_")
+    assert payload["data_url"].startswith("data:image/svg+xml;base64,")
