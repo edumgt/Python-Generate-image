@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import html
+import base64
 import textwrap
 import uuid
 from pathlib import Path
@@ -34,6 +35,7 @@ class GenerationResult(BaseModel):
     height: int
     model_id: str
     prompt: str
+    data_url: str | None = None
 
 
 class GeneratorService:
@@ -63,13 +65,14 @@ class GeneratorService:
             width, height = self.VIDEO_SIZES[request.video_size]
             label = f"VIDEO PREVIEW ({request.video_size})"
 
-        output_path = self._create_preview_svg(
+        output_path, svg_content = self._create_preview_svg(
             model_id=request.model_id,
             prompt=request.prompt,
             width=width,
             height=height,
             label=label,
         )
+        encoded_svg = base64.b64encode(svg_content.encode("utf-8")).decode("ascii")
         return GenerationResult(
             file_url=f"/outputs/{output_path.name}",
             media_type="image/svg+xml",
@@ -77,9 +80,10 @@ class GeneratorService:
             height=height,
             model_id=request.model_id,
             prompt=request.prompt,
+            data_url=f"data:image/svg+xml;base64,{encoded_svg}",
         )
 
-    def _create_preview_svg(self, model_id: str, prompt: str, width: int, height: int, label: str) -> Path:
+    def _create_preview_svg(self, model_id: str, prompt: str, width: int, height: int, label: str) -> tuple[Path, str]:
         escaped_lines = textwrap.wrap(f"Prompt: {prompt}", width=60)
         text_lines = [
             label,
@@ -105,4 +109,4 @@ class GeneratorService:
         file_name = f"asset_{uuid.uuid4().hex[:8]}.svg"
         path = self.output_dir / file_name
         path.write_text(svg, encoding="utf-8")
-        return path
+        return path, svg
