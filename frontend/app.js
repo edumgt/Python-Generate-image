@@ -1,53 +1,94 @@
-async function fetchJson(url) {
-  const response = await fetch(url);
+async function fetchJson(url, options) {
+  const response = await fetch(url, options);
   if (!response.ok) {
-    throw new Error(`요청 실패: ${url}`);
+    const text = await response.text();
+    throw new Error(text || `요청 실패: ${url}`);
   }
   return response.json();
 }
 
-function renderList(elementId, items, formatter) {
-  const el = document.getElementById(elementId);
-  el.innerHTML = "";
+function toggleModeUI(outputType) {
+  const imageFields = document.querySelectorAll('.image-only');
+  const videoFields = document.querySelectorAll('.video-only');
+  const isImage = outputType === 'image';
 
-  if (!items.length) {
-    const li = document.createElement("li");
-    li.className = "muted";
-    li.textContent = "데이터가 없습니다.";
-    el.appendChild(li);
-    return;
-  }
+  imageFields.forEach((field) => field.classList.toggle('hidden', !isImage));
+  videoFields.forEach((field) => field.classList.toggle('hidden', isImage));
+}
 
-  items.forEach((item) => {
-    const li = document.createElement("li");
-    li.textContent = formatter(item);
-    el.appendChild(li);
+async function initializeForm() {
+  const data = await fetchJson('/api/options');
+  const modelSelect = document.getElementById('model-id');
+
+  modelSelect.innerHTML = '';
+  data.models.forEach((modelId) => {
+    const option = document.createElement('option');
+    option.value = modelId;
+    option.textContent = modelId;
+    modelSelect.appendChild(option);
   });
 }
 
-async function loadDashboard() {
-  const healthEl = document.getElementById("health");
+function readPayload() {
+  const outputType = document.getElementById('output-type').value;
+  return {
+    model_id: document.getElementById('model-id').value,
+    output_type: outputType,
+    width: Number(document.getElementById('width').value),
+    height: Number(document.getElementById('height').value),
+    video_size: document.getElementById('video-size').value,
+    prompt: document.getElementById('prompt').value.trim(),
+  };
+}
+
+async function generate(event) {
+  event.preventDefault();
+
+  const statusEl = document.getElementById('status');
+  const resultImage = document.getElementById('result-image');
+  const button = document.getElementById('submit-button');
+
+  const payload = readPayload();
+
+  if (!payload.prompt) {
+    statusEl.textContent = '프롬프트를 입력해 주세요.';
+    return;
+  }
+
+  button.disabled = true;
+  statusEl.textContent = '생성 중...';
 
   try {
-    const [health, stack, files] = await Promise.all([
-      fetchJson("/api/health"),
-      fetchJson("/api/stack"),
-      fetchJson("/api/files"),
-    ]);
+    const data = await fetchJson('/api/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
 
-    healthEl.textContent = `상태: ${health.status}`;
-
-    renderList(
-      "stack-list",
-      stack,
-      (item) => `[${item.category}] ${item.name} - ${item.description}`,
-    );
-
-    renderList("files-list", files.python_files, (name) => name);
+    resultImage.src = `${data.file_url}?t=${Date.now()}`;
+    resultImage.classList.remove('hidden');
+    statusEl.textContent = `완료: ${data.model_id} / ${data.width}x${data.height}`;
   } catch (error) {
-    healthEl.textContent = "상태 확인 실패";
-    healthEl.classList.add("muted");
+    statusEl.textContent = `실패: ${error.message}`;
+  } finally {
+    button.disabled = false;
   }
 }
 
-loadDashboard();
+async function boot() {
+  const outputTypeEl = document.getElementById('output-type');
+  outputTypeEl.addEventListener('change', (event) => toggleModeUI(event.target.value));
+
+  try {
+    await initializeForm();
+  } catch (error) {
+    const statusEl = document.getElementById('status');
+    statusEl.textContent = '초기 데이터 로드 실패';
+    statusEl.classList.add('muted');
+  }
+
+  toggleModeUI(outputTypeEl.value);
+  document.getElementById('generate-form').addEventListener('submit', generate);
+}
+
+boot();

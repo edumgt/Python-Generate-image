@@ -1,4 +1,9 @@
+from pathlib import Path
+import sys
+
 from fastapi.testclient import TestClient
+
+sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 from backend.app.main import app
 
@@ -12,17 +17,30 @@ def test_health() -> None:
     assert response.json() == {"status": "ok"}
 
 
-def test_stack() -> None:
-    response = client.get("/api/stack")
+def test_options() -> None:
+    response = client.get("/api/options")
     assert response.status_code == 200
     payload = response.json()
-    assert len(payload) >= 5
-    assert all("name" in item and "category" in item for item in payload)
+    assert "models" in payload
+    assert "image" in payload["output_types"]
+    assert "video" in payload["output_types"]
 
 
-def test_files() -> None:
-    response = client.get("/api/files")
+def test_generate_image() -> None:
+    response = client.post(
+        "/api/generate",
+        json={
+            "model_id": "stabilityai/sdxl-turbo",
+            "output_type": "image",
+            "prompt": "a cozy cabin in snowy mountain",
+            "width": 512,
+            "height": 512,
+            "video_size": "square",
+        },
+    )
     assert response.status_code == 200
     payload = response.json()
-    assert "python_files" in payload
-    assert "cpu.py" in payload["python_files"]
+    assert payload["media_type"] == "image/svg+xml"
+    assert payload["width"] == 512
+    assert payload["height"] == 512
+    assert payload["file_url"].startswith("/outputs/asset_")

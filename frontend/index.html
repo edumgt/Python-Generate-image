@@ -3,25 +3,61 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>python-generate-image Stack Dashboard</title>
+    <title>python-generate-image Studio</title>
     <link rel="stylesheet" href="/static/styles.css" />
   </head>
   <body>
     <main class="container">
-      <h1>python-generate-image 기술 스택 대시보드</h1>
+      <h1>python-generate-image Studio</h1>
+
       <section class="panel">
-        <h2>서비스 상태</h2>
-        <p id="health">확인 중...</p>
+        <h2>생성 파라미터</h2>
+        <form id="generate-form" class="grid-form">
+          <label>
+            Hugging Face 모델
+            <select id="model-id" required></select>
+          </label>
+
+          <label>
+            결과 타입
+            <select id="output-type" required>
+              <option value="image">이미지</option>
+              <option value="video">동영상(미리보기 GIF)</option>
+            </select>
+          </label>
+
+          <label class="image-only">
+            이미지 Width
+            <input id="width" type="number" min="256" max="1536" step="64" value="768" />
+          </label>
+
+          <label class="image-only">
+            이미지 Height
+            <input id="height" type="number" min="256" max="1536" step="64" value="768" />
+          </label>
+
+          <label class="video-only hidden">
+            동영상 사이즈
+            <select id="video-size">
+              <option value="square">정사각형 (768x768)</option>
+              <option value="landscape">가로형 (1024x576)</option>
+              <option value="portrait">세로형 (576x1024)</option>
+            </select>
+          </label>
+
+          <label class="span-2">
+            프롬프트
+            <textarea id="prompt" rows="4" required placeholder="생성할 장면을 입력하세요"></textarea>
+          </label>
+
+          <button id="submit-button" type="submit">생성하기</button>
+        </form>
       </section>
 
       <section class="panel">
-        <h2>기술 스택</h2>
-        <ul id="stack-list"></ul>
-      </section>
-
-      <section class="panel">
-        <h2>루트 Python 스크립트</h2>
-        <ul id="files-list"></ul>
+        <h2>결과</h2>
+        <p id="status" class="muted">대기 중</p>
+        <img id="result-image" class="result-media hidden" alt="생성 결과" />
       </section>
     </main>
 
