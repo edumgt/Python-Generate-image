@@ -1,0 +1,28 @@
+---
+# PersistentVolumeClaim for HuggingFace model cache (air-gapped pre-load)
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: hf-cache-pvc
+  namespace: imggen
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  storageClassName: local-path   # k3s default StorageClass
+---
+# PersistentVolumeClaim for generated output files
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: outputs-pvc
+  namespace: imggen
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+  storageClassName: local-path

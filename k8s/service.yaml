@@ -1,0 +1,31 @@
+---
+# ClusterIP service — accessed within the cluster
+apiVersion: v1
+kind: Service
+metadata:
+  name: imggen
+  namespace: imggen
+spec:
+  selector:
+    app: imggen
+  ports:
+    - name: http
+      port: 8000
+      targetPort: 8000
+---
+# NodePort service — exposes the app on every node's IP:30800
+# Browse to http://<VM-IP>:30800 from the host machine.
+apiVersion: v1
+kind: Service
+metadata:
+  name: imggen-nodeport
+  namespace: imggen
+spec:
+  type: NodePort
+  selector:
+    app: imggen
+  ports:
+    - name: http
+      port: 8000
+      targetPort: 8000
+      nodePort: 30800

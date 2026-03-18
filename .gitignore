@@ -13,3 +13,5 @@
 *.pyc
 __pycache__/
 /generated/
+moon_output.png
+hf_cache/

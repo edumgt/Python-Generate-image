@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: imggen-config
+  namespace: imggen
+data:
+  # HuggingFace cache directory inside the container.
+  # Mount hf-cache-pvc here so models survive pod restarts.
+  HF_HOME: /app/hf_cache
+  # When set to "1", the HF library never tries to reach the internet.
+  HF_DATASETS_OFFLINE: "1"
+  TRANSFORMERS_OFFLINE: "1"
+  # Where the FastAPI app writes generated images/videos
+  OUTPUT_DIR: /app/generated
+  # Default Stable Diffusion model used for generation
+  DEFAULT_MODEL_ID: runwayml/stable-diffusion-v1-5

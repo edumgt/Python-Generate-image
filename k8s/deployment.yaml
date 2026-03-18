@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: imggen
+  namespace: imggen
+  labels:
+    app: imggen
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: imggen
+  template:
+    metadata:
+      labels:
+        app: imggen
+    spec:
+      containers:
+        - name: imggen
+          # Image is built locally and imported into k3s containerd.
+          # See scripts/deploy.sh for the build + import steps.
+          image: python-generate-image:latest
+          imagePullPolicy: Never        # air-gapped: never pull from registry
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: imggen-config
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1Gi"
+            limits:
+              cpu: "2"
+              memory: "4Gi"
+          volumeMounts:
+            - name: hf-cache
+              mountPath: /app/hf_cache
+            - name: outputs
+              mountPath: /app/generated
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 8000
+            initialDelaySeconds: 30
+            periodSeconds: 30
+      volumes:
+        - name: hf-cache
+          persistentVolumeClaim:
+            claimName: hf-cache-pvc
+        - name: outputs
+          persistentVolumeClaim:
+            claimName: outputs-pvc
