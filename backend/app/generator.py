@@ -2,11 +2,30 @@ from __future__ import annotations
 
 import html
 import base64
+import io
+import logging
+import os
 import textwrap
 import uuid
 from pathlib import Path
 
 from pydantic import BaseModel, Field, field_validator
+
+logger = logging.getLogger(__name__)
+
+# ---------------------------------------------------------------------------
+# Optional AI back-end (diffusers / torch).  When the libraries are not
+# installed the service falls back to an SVG placeholder so that the FastAPI
+# app and tests still work without a GPU or a full model installation.
+# ---------------------------------------------------------------------------
+try:
+    import torch
+    from diffusers import StableDiffusionPipeline
+
+    _DIFFUSERS_AVAILABLE = True
+except ImportError:
+    _DIFFUSERS_AVAILABLE = False
+    logger.info("diffusers/torch not installed — using SVG preview fallback")
 
 
 class GenerateRequest(BaseModel):
@@ -45,6 +64,9 @@ class GeneratorService:
         "portrait": (576, 1024),
     }
 
+    # Cache loaded pipelines so they are not reloaded on every request.
+    _pipeline_cache: dict[str, object] = {}
+
     def __init__(self, output_dir: Path):
         self.output_dir = output_dir
         self.output_dir.mkdir(parents=True, exist_ok=True)
@@ -57,14 +79,74 @@ class GeneratorService:
             "stabilityai/stable-diffusion-3-medium-diffusers",
         ]
 
+    # ------------------------------------------------------------------
+    # Public API
+    # ------------------------------------------------------------------
+
     def generate(self, request: GenerateRequest) -> GenerationResult:
         width, height = request.width, request.height
-        label = "IMAGE"
 
         if request.output_type == "video":
             width, height = self.VIDEO_SIZES[request.video_size]
-            label = f"VIDEO PREVIEW ({request.video_size})"
 
+        if _DIFFUSERS_AVAILABLE:
+            return self._generate_ai(request, width, height)
+        return self._generate_svg_preview(request, width, height)
+
+    # ------------------------------------------------------------------
+    # AI generation path (diffusers)
+    # ------------------------------------------------------------------
+
+    def _load_pipeline(self, model_id: str) -> "StableDiffusionPipeline":
+        if model_id not in self._pipeline_cache:
+            # HF_HOME is read automatically by the HuggingFace libraries.
+            # Set TRANSFORMERS_OFFLINE=1 to prevent any internet access.
+            device = "cuda" if torch.cuda.is_available() else "cpu"
+            dtype = torch.float16 if device == "cuda" else torch.float32
+            logger.info("Loading pipeline %s on %s …", model_id, device)
+            pipe = StableDiffusionPipeline.from_pretrained(
+                model_id,
+                torch_dtype=dtype,
+                safety_checker=None,
+                requires_safety_checker=False,
+            ).to(device)
+            pipe.set_progress_bar_config(disable=True)
+            self._pipeline_cache[model_id] = pipe
+        return self._pipeline_cache[model_id]  # type: ignore[return-value]
+
+    def _generate_ai(self, request: GenerateRequest, width: int, height: int) -> GenerationResult:
+        pipe = self._load_pipeline(request.model_id)
+        image = pipe(
+            prompt=request.prompt,
+            width=width,
+            height=height,
+            num_inference_steps=20,
+        ).images[0]
+
+        file_name = f"asset_{uuid.uuid4().hex[:8]}.png"
+        output_path = self.output_dir / file_name
+        image.save(str(output_path), format="PNG")
+
+        buf = io.BytesIO()
+        image.save(buf, format="PNG")
+        encoded = base64.b64encode(buf.getvalue()).decode("ascii")
+
+        return GenerationResult(
+            file_url=f"/outputs/{file_name}",
+            media_type="image/png",
+            width=width,
+            height=height,
+            model_id=request.model_id,
+            prompt=request.prompt,
+            data_url=f"data:image/png;base64,{encoded}",
+        )
+
+    # ------------------------------------------------------------------
+    # SVG placeholder path (no diffusers installed)
+    # ------------------------------------------------------------------
+
+    def _generate_svg_preview(self, request: GenerateRequest, width: int, height: int) -> GenerationResult:
+        label = "IMAGE" if request.output_type == "image" else f"VIDEO PREVIEW ({request.video_size})"
         output_path, svg_content = self._create_preview_svg(
             model_id=request.model_id,
             prompt=request.prompt,
